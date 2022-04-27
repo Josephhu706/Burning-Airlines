@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import FlightResults from './FlightResults'
 
-const SERVER_URL = 'http://localhost:3000/secrets.json';
+import SearchForm from './SearchForm'
+
+const SERVER_URL = 'http://localhost:3000/flights.json';
+
 
 export default class FlightSearch extends Component {
     constructor(){
@@ -32,17 +35,31 @@ export default class FlightSearch extends Component {
                 },
             ]
         }
+        this.fetchFlights = this.fetchFlights.bind(this)
     }
 
-    componentDidMount() {
+    fetchFlights(state){
+        console.log(state)
+        let flights = [...this.state.flights]
+        let matchedFlights = []
 
-        const fetchFlights = () => {
-            axios(SERVER_URL).then((response) => {
-                this.setState({flights: response.data});
-                setTimeout(fetchFlights, 3000);
-            });
-        };
-        fetchFlights();
+        flights.forEach(flight=>{
+            console.log(state.destination)
+            
+            if ((state.destination == flight.destination) && state.origin == flight.origin){
+                matchedFlights.push(flight)
+            }
+        })
+        console.log(matchedFlights)
+    // componentDidMount() {
+
+    //     const fetchFlights = () => {
+    //         axios(SERVER_URL).then((response) => {
+    //             this.setState({flights: response.data});
+    //             setTimeout(fetchFlights, 3000);
+    //         });
+    //     };
+    //     fetchFlights();
     }
 
 
@@ -50,8 +67,8 @@ export default class FlightSearch extends Component {
     return (
         <div>
             <FlightResults flights={this.state.flights}/>
+            <SearchForm onSubmit={this.fetchFlights}/>
         </div>
-    )
+    );
   }
 }
-
