@@ -6,8 +6,6 @@ import SearchForm from './SearchForm'
 
 const SERVER_URL = 'http://localhost:3000/flights.json';
 
-// const SERVER_URL = 'http://localhost:3000/secrets.json';
-
 
 export default class FlightSearch extends Component {
     constructor(){
@@ -53,16 +51,19 @@ export default class FlightSearch extends Component {
             }
         })
         console.log(matchedFlights)
-    componentDidMount() {
-
-        const fetchFlights = () => {
-            axios(SERVER_URL).then((response) => {
-                this.setState({flights: response.data});
-                setTimeout(fetchFlights, 3000);
-            });
-        };
-        fetchFlights();
     }
+
+
+    // componentDidMount() {
+
+    //     const fetchFlights = () => {
+    //         axios(SERVER_URL).then((response) => {
+    //             this.setState({flights: response.data});
+    //             setTimeout(fetchFlights, 3000);
+    //         });
+    //     };
+    //     fetchFlights();
+    // }
 
 
   render() {
