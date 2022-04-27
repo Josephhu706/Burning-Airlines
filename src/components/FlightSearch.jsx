@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import FlightResults from './SearchResults'
+import FlightResults from './FlightResults'
+import SearchForm from './SearchForm'
 
 export default class FlightSearch extends Component {
     constructor(){
@@ -30,11 +31,22 @@ export default class FlightSearch extends Component {
                 },
             ]
         }
+        this.fetchFlights = this.fetchFlights.bind(this)
     }
 
-    fetchFlights(q){
+    fetchFlights(state){
+        console.log(state)
+        let flights = [...this.state.flights]
+        let matchedFlights = []
 
-
+        flights.forEach(flight=>{
+            console.log(state.destination)
+            
+            if ((state.destination == flight.destination) && state.origin == flight.origin){
+                matchedFlights.push(flight)
+            }
+        })
+        console.log(matchedFlights)
     }
 
 
@@ -42,6 +54,7 @@ export default class FlightSearch extends Component {
     return (
         <div>
             <FlightResults flights={this.state.flights}/>
+            <SearchForm onSubmit={this.fetchFlights}/>
         </div>
     )
   }
