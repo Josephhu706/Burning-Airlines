@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import FlightResults from './FlightResults'
+<<<<<<< HEAD
 import SearchForm from './SearchForm'
+=======
+
+// const SERVER_URL = 'http://localhost:3000/secrets.json';
+>>>>>>> 1175f14e28fbc0ea280c454bb8c6f74eaba6cf63
 
 export default class FlightSearch extends Component {
     constructor(){
@@ -47,6 +52,15 @@ export default class FlightSearch extends Component {
             }
         })
         console.log(matchedFlights)
+    componentDidMount() {
+
+        const fetchFlights = () => {
+            axios(SERVER_URL).then((response) => {
+                this.setState({flights: response.data});
+                setTimeout(fetchFlights, 3000);
+            });
+        };
+        fetchFlights();
     }
 
 

@@ -1,9 +1,30 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-export default class FlightResults extends Component {
-  render() {
-    return (
-      <div>FlightResults</div>
-    )
-  }
-}
+const FlightResults = (props) => {
+  return (
+    <div>
+        <h2>Flight Search Results ({ props.flights.length })</h2>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Date</th>
+                    <th>Flight</th>
+                    <th>From > To</th>
+                    <th>Plane</th>
+                </tr>
+                { props.flights.map((flight) =>
+                <tr key={ flight.id }> 
+                    <td> { flight.date }</td>
+                    <td> { flight.id }</td>
+                    <td> { flight.origin + ' > ' + flight.destination }</td>
+                    <td> { flight.airplane_id }</td>
+                </tr> 
+                ) }
+            </tbody>
+        </table>
+    </div>
+  );
+};
+
+
+export default FlightResults;
