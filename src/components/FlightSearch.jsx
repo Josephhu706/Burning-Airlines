@@ -12,37 +12,38 @@ export default class FlightSearch extends Component {
     constructor(){
         super()
         this.state={
-            flights:[]
+            flights:[],
+            flightResults:[]
         }
 
     }
 
 
+    componentDidMount(state){
 
-    componentDidMount(){
 
-        const fetchFlights=(state)=>{
+        const fetchFlights=()=>{
+
             axios(SERVER_URL).then((response)=>{
-                let matchedFlights = []
-                response.data.forEach(flight=>{
-                    if ((state.destination == flight.destination) && (state.origin == flight.origin)){
-                        matchedFlights.push(flight)
-                    }
-                })
-                this.setState({flights: matchedFlights})
+     
+                this.setState({flights: response.data})
                 setTimeout(fetchFlights, 5000);
             })
         }
+        
         fetchFlights();
-    }   
+    }
 
+ 
 
 
   render() {
     return (
         <div>
+
             <FlightResults flights={this.state.flights}/>
             <SearchForm onSubmit={this.fetchFlights}/>
+
         </div>
     );
   }
