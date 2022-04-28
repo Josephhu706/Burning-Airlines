@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import FlightResults from './FlightResults'
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Flight from './Flight';
 import SearchForm from './SearchForm'
 
 const SERVER_URL = 'http://localhost:3000/flights.json';
@@ -17,22 +18,6 @@ export default class FlightSearch extends Component {
         this.fetchFlights = this.fetchFlights.bind(this);
     }
 
-    // componentDidMount(){
-
-    //     const fetchFlights=(state)=>{
-    //         axios(SERVER_URL).then((response)=>{
-    //             let matchedFlights = []
-    //             response.data.forEach(flight=>{
-    //                 if ((state.destination == flight.destination) && (state.origin == flight.origin)){
-    //                     matchedFlights.push(flight)
-    //                 }
-    //             })
-    //             this.setState({flights: matchedFlights})
-    //             setTimeout(fetchFlights, 5000);
-    //         })
-    //     }
-    //     fetchFlights();
-    // }  
 
     fetchFlights(state){
         axios(SERVER_URL).then((response) => {
@@ -50,10 +35,8 @@ export default class FlightSearch extends Component {
   render() {
     return (
         <div>
-
-            <FlightResults flights={this.state.flights}/>
             <SearchForm onSubmit={this.fetchFlights}/>
-
+            <FlightResults flights={this.state.flights}/>
         </div>
     );
   }
