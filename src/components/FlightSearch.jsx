@@ -11,7 +11,8 @@ export default class FlightSearch extends Component {
     constructor(){
         super()
         this.state={
-            flights:[]
+            flights:[],
+            flightResults:[]
         }
         this.fetchFlights = this.fetchFlights.bind(this);
     }
@@ -49,8 +50,10 @@ export default class FlightSearch extends Component {
   render() {
     return (
         <div>
+
             <FlightResults flights={this.state.flights}/>
             <SearchForm onSubmit={this.fetchFlights}/>
+
         </div>
     );
   }
