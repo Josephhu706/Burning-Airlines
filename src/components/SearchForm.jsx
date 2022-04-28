@@ -5,7 +5,7 @@ export default class SearchForm extends Component {
         super();
         this.state={
             destination: '',
-            origin:''
+            origin: ''
         }
 
         this._handleChange = this._handleChange.bind(this)
@@ -17,7 +17,7 @@ export default class SearchForm extends Component {
         if (event.target.className == 'origin'){
             this.setState({origin: event.target.value})
         }
-        else{
+        if (event.target.className == 'destination'){
             this.setState({destination: event.target.value})
         }
  
@@ -26,8 +26,7 @@ export default class SearchForm extends Component {
     _handleSubmit(event){
         event.preventDefault();
         // console.log(this.state)
-        this.props.onSubmit(this.state)
-    
+        this.props.onSubmit(this.state)    ;
     }
 
   render() {
