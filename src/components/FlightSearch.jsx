@@ -18,22 +18,6 @@ export default class FlightSearch extends Component {
         this.fetchFlights = this.fetchFlights.bind(this);
     }
 
-    // componentDidMount(){
-
-    //     const fetchFlights=(state)=>{
-    //         axios(SERVER_URL).then((response)=>{
-    //             let matchedFlights = []
-    //             response.data.forEach(flight=>{
-    //                 if ((state.destination == flight.destination) && (state.origin == flight.origin)){
-    //                     matchedFlights.push(flight)
-    //                 }
-    //             })
-    //             this.setState({flights: matchedFlights})
-    //             setTimeout(fetchFlights, 5000);
-    //         })
-    //     }
-    //     fetchFlights();
-    // }  
 
     fetchFlights(state){
         axios(SERVER_URL).then((response) => {
@@ -53,11 +37,6 @@ export default class FlightSearch extends Component {
         <div>
             <SearchForm onSubmit={this.fetchFlights}/>
             <FlightResults flights={this.state.flights}/>
-            <Router>
-                <Routes>
-                    <Route path="/flight" element={<Flight/>}/>
-                </Routes>
-            </Router>   
         </div>
     );
   }
