@@ -13,40 +13,37 @@ export default class FlightSearch extends Component {
         this.state={
             flights:[]
         }
-
+        this.fetchFlights = this.fetchFlights.bind(this);
     }
 
+    // componentDidMount(){
 
-
-    componentDidMount(){
-
-        const fetchFlights=(state)=>{
-            axios(SERVER_URL).then((response)=>{
-                let matchedFlights = []
-                response.data.forEach(flight=>{
-                    if ((state.destination == flight.destination) && (state.origin == flight.origin)){
-                        matchedFlights.push(flight)
-                    }
-                })
-                this.setState({flights: matchedFlights})
-                setTimeout(fetchFlights, 5000);
-            })
-        }
-        fetchFlights();
-    }   
-
-
-
-    // componentDidMount() {
-
-    //     const fetchFlights = () => {
-    //         axios(SERVER_URL).then((response) => {
-    //             this.setState({flights: response.data});
-    //             setTimeout(fetchFlights, 3000);
-    //         });
-    //     };
+    //     const fetchFlights=(state)=>{
+    //         axios(SERVER_URL).then((response)=>{
+    //             let matchedFlights = []
+    //             response.data.forEach(flight=>{
+    //                 if ((state.destination == flight.destination) && (state.origin == flight.origin)){
+    //                     matchedFlights.push(flight)
+    //                 }
+    //             })
+    //             this.setState({flights: matchedFlights})
+    //             setTimeout(fetchFlights, 5000);
+    //         })
+    //     }
     //     fetchFlights();
-    // }
+    // }  
+
+    fetchFlights(state){
+        axios(SERVER_URL).then((response) => {
+            let matchedFlights = [];
+            response.data.forEach(flight=>{
+                if ((state.destination == flight.destination) && (state.origin == flight.origin)){
+                    matchedFlights.push(flight);
+                    this.setState({flights: matchedFlights});
+                };
+            });
+        });
+    }
 
 
   render() {
