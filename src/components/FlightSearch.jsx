@@ -7,7 +7,6 @@ import SearchForm from './SearchForm'
 const SERVER_URL = 'http://localhost:3000/flights.json';
 
 
-
 export default class FlightSearch extends Component {
     constructor(){
         super()
@@ -35,6 +34,18 @@ export default class FlightSearch extends Component {
     }
 
  
+
+
+    // componentDidMount() {
+
+    //     const fetchFlights = () => {
+    //         axios(SERVER_URL).then((response) => {
+    //             this.setState({flights: response.data});
+    //             setTimeout(fetchFlights, 3000);
+    //         });
+    //     };
+    //     fetchFlights();
+    // }
 
 
   render() {
