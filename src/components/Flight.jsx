@@ -2,16 +2,24 @@ import React, { Component } from 'react'
 
 export default class Flight extends Component {
     constructor(props){
-        super()
-        console.log(props)
-        this.state={
-            seats: Array(12).fill(null),
-        }
-    }
+      super(props)
+
+  }
+
   render() {
-    
+    console.log(this.props)
     return (
-      <div>FLIGHT COMING SOON</div>
+
+      <table>
+            <tbody>
+                <tr>
+                  <th>{this.props.flight.date}</th>
+                  <th>{this.props.flight.flight_id}</th>
+                  <th>{this.props.flight.origin}>{this.props.flight.destination}</th>
+                </tr>
+            </tbody>
+      </table> 
+      
     )
   }
 }

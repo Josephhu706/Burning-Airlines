@@ -7,7 +7,10 @@ export default class FlightResults extends Component {
     constructor(props){
         super(props);
         this.state={
-            flight: ''
+            origin: '',
+            destination: '',
+            flight_id: '', 
+            date: ''
         }
     }
   render() {
@@ -29,7 +32,7 @@ export default class FlightResults extends Component {
                     <tr key={ flight.id }> 
                         <td> { flight.date }</td>
                         <td>{flight.id}</td>
-                        <Link to='/flight' onClick={()=>{this.setState({flight: flight.id})}}><td>{flight.id}</td></Link> 
+                        <td><Link to='/flight' onClick={()=>{this.setState({origin: flight.origin, destination: flight.destination, flight_id: flight.id, date: flight.date})}}>{flight.id}</Link></td>
                         <td> { flight.origin + ' > ' + flight.destination }</td>
                         <td> { flight.airplane_id }</td>
                     </tr> 
@@ -38,7 +41,7 @@ export default class FlightResults extends Component {
             </table>
         </div>
         <Routes>
-            <Route path='/flight' element={<Flight flight={this.state.flight}/>}/>
+            <Route path='/flight' element={<Flight flight={this.state}/>}/>
         </Routes>
     </Router>
     )
